@@ -115,8 +115,11 @@ public class MyPlanner extends AbstractPlanner {
         List<Action> bestActionSequence = new ArrayList<>();
         State initialState = new State(problem.getInitialState());
         Condition goal = problem.getGoal();
-        int numWalks = 2000; // Nombre maximum de marches aléatoires
-        int maxLengthWalk = 10; // Longueur maximale d'une marche aléatoire
+        int numWalks = 100 * problem.getActions().size(); // Nombre maximum de marches aléatoires (comme les problèmes
+                                                          // varie j'ai décidé changés sa valeur en fonction du nombre
+                                                          // d'action possible)
+        int maxLengthWalk = Math.min(100, 2 * problem.getFluents().size()); // Longueur maximale d'une marche aléatoire
+                                                             // (estimé en fonction du nombre de fluents du problème)
         Random random = new Random();
         double bestHeuristicValue = Double.MAX_VALUE;
 
@@ -187,14 +190,14 @@ public class MyPlanner extends AbstractPlanner {
             double heuristicValue = evaluateHeuristic(currentState, goal); // Fonction heuristique
 
             // Si l'état final a une meilleure valeur heuristique, le sauvegarder
-            if (heuristicValue < bestHeuristicValue) {
+            if (heuristicValue < bestHeuristicValue && !currentState.satisfy(goal)) {
                 bestHeuristicValue = heuristicValue;
                 bestActionSequence = new ArrayList<>(currentActionSequence);
             }
         }
 
         // Vérifier si une séquence d'actions valide a été trouvée
-        if (!bestActionSequence.isEmpty()) {
+        if (!bestActionSequence.isEmpty() && initialState.satisfy(goal)) {
             LOGGER.info("* Pure Random Walk search found a solution with the best heuristic value\n");
             for (int i = 0; i < bestActionSequence.size(); i++) {
                 plan.add(i, bestActionSequence.get(i));

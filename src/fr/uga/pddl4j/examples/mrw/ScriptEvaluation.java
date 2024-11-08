@@ -41,7 +41,7 @@ public class ScriptEvaluation {
                 MyPlanner.main(new String[] { ".\\blocks\\domain.pddl",".\\blocks\\"+item.getName(),"blocksTime.txt","blocksLength.txt" });
             }
         }
-         
+        
         dir = new File(".\\depots");
         liste = dir.listFiles();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("depotsTime.txt", true))) {

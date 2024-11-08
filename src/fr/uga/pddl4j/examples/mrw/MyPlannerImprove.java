@@ -101,7 +101,7 @@ public class MyPlannerImprove extends AbstractPlanner {
         State initialState = new State(problem.getInitialState());
         Condition goal = problem.getGoal();
         int numWalks = 4000; // Nombre maximum de marches aléatoires
-        int maxLengthWalk = 30; // Longueur maximale d'une marche aléatoire
+        int maxLengthWalk = Math.min(100, 2 * problem.getFluents().size());  // Longueur maximale d'une marche aléatoire
         Random random = new Random();
         double bestHeuristicValue = Double.MAX_VALUE;
 
