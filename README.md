@@ -58,7 +58,7 @@ Pour exécuter le planner HSP :
 java -cp classes;lib/pddl4j-4.0.0.jar fr.uga.pddl4j.examples.mrw.HSP <domain> <probleme>
  ```
 
-Pour exécuter le planner Random Walk (L'algorithme MonteCarlo Pure Tandom Walk à été implémenter directement dans la méthode solve()): 
+Pour exécuter le planner Random Walk (L'algorithme Monte-Carlo Pure Random Walk à été implémenter directement dans la méthode solve()): 
 ```
 java -cp classes;lib/pddl4j-4.0.0.jar fr.uga.pddl4j.examples.mrw.MyPlanner <domain> <probleme>
  ```
