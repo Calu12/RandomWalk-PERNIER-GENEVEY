@@ -8,21 +8,22 @@ import java.io.IOException;
 public class EvaluationSingle {
     public static void main(String[] args) {
 
-        String path = "p20.pddl";
+        String file = "p20.pddl";
+        String dossier="gripper";
 
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("gripperTime.txt", true))) {
-            writer.write(/*/"\n" + path+*/";");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dossier+"Time.txt", true))) {
+            writer.write("\n" + file+";");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("gripperLength.txt", true))) {
-            writer.write(/*"\n" + path +*/ ";");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dossier+"Length.txt", true))) {
+            writer.write("\n" + file + ";");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MyPlanner.main(new String[] { ".\\gripper\\domain.pddl", ".\\gripper\\" + path, "gripperTime.txt",
-                "gripperLength.txt" });
+        MyPlanner.main(new String[] { ".\\"+dossier+"\\domain.pddl", ".\\"+dossier+"\\" + file, dossier+"Time.txt",
+                dossier+"Length.txt" });
 
     }
 }
